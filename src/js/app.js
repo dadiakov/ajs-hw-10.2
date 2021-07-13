@@ -1,6 +1,23 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable linebreak-style */
 
-import GameSavingLoader from './gamesaving';
+import json from './parser';
+import read from './reader';
 
-GameSavingLoader.load().then((response) => console.log(response), (error) => console.log(error));
+export default class GameSaving {
+  constructor() {
+    (async () => {
+      try {
+        const response = await read();
+        const data = await json(response);
+        return JSON.parse(data);
+      } catch (e) {
+        console.log(e);
+      }
+    })().then((data) => { this.save = data; });
+  }
+}
+
+const p = new GameSaving();
+setTimeout(() => console.log(p), 2000);
