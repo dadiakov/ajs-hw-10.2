@@ -21,4 +21,7 @@ export default class GameSaving {
   } catch (e) {
     console.log(e);
   }
-})().then((data) => { saveObj = new GameSaving(data); console.log(saveObj)});
+})().then((data) => {
+  saveObj = new GameSaving(data);
+  console.log(saveObj);
+});
